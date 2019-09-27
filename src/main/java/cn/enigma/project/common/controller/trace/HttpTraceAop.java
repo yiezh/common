@@ -3,11 +3,10 @@ package cn.enigma.project.common.controller.trace;
 import cn.enigma.project.common.controller.trace.annotation.HttpTrace;
 import cn.enigma.project.common.controller.trace.annotation.Logging;
 import cn.enigma.project.common.util.IpHelper;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.stereotype.Component;
@@ -31,11 +30,12 @@ import java.util.Map;
  * Modified By:
  * Description:
  */
+@Slf4j
 @Component
 @Aspect
 public class HttpTraceAop {
 
-    private static final Logger log = LoggerFactory.getLogger("HttpTraceAop");
+//    private static final Logger log = LoggerFactory.getLogger(Http);
 
     //    @Pointcut("execution(* com.enigma.project..controller.*.*(..))")
     @Pointcut("@annotation(cn.enigma.project.common.controller.trace.annotation.HttpTrace)")

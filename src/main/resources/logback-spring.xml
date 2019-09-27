@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="cn/enigma/project/common/log/defaults.xml"/>
+
+    <include resource="cn/enigma/project/common/log/console-appender.xml"/>
+    <include resource="cn/enigma/project/common/log/file-appender.xml"/>
+    <include resource="cn/enigma/project/common/log/http-trace.xml"/>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="FILE_ERROR"/>
+    </root>
+</configuration>

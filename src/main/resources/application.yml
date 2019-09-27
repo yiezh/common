@@ -2,3 +2,10 @@ server:
   port: 8123
 cors:
   headers: AccessToken,AuthInfo
+logging:
+  path: /Users/luzhihao/tmp/logs
+spring:
+  application:
+    name: project-common
+  zipkin:
+    enabled: false
