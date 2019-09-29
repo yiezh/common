@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.slf4j.MDC;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -19,7 +18,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,8 +32,6 @@ import java.util.Map;
 @Component
 @Aspect
 public class HttpTraceAop {
-
-//    private static final Logger log = LoggerFactory.getLogger(Http);
 
     //    @Pointcut("execution(* com.enigma.project..controller.*.*(..))")
     @Pointcut("@annotation(cn.enigma.project.common.controller.trace.annotation.HttpTrace)")
@@ -60,7 +56,6 @@ public class HttpTraceAop {
         } catch (Throwable e) {
             log.error("{} LOGGER request args error: {}.", getRequestMethodName(joinPoint), e.getMessage(), e);
         }
-        MDC.put("time", LocalDateTime.now().toString());
     }
 
     private String getRequestMethodName(JoinPoint jp) {
