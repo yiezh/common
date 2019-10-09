@@ -8,4 +8,5 @@ package cn.enigma.project.common.define;
  */
 public class SystemDefine {
     public static final String HTTP_REQUEST_TRACE_ID = "X-B3-TraceId";
+    public static final String HTTP_REQUEST_SPAN_ID = "X-B3-SpanId";
 }

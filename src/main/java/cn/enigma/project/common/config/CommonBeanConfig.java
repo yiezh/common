@@ -2,11 +2,8 @@ package cn.enigma.project.common.config;
 
 import cn.enigma.project.common.controller.trace.HttpTraceAop;
 import cn.enigma.project.common.startup.SystemInit;
-import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import javax.annotation.Resource;
 
 /**
  * @author luzh
@@ -16,9 +13,6 @@ import javax.annotation.Resource;
  */
 @Configuration
 public class CommonBeanConfig {
-
-    @Resource
-    private ServerProperties serverProperties;
 
     // 接口请求aop拦截bean
     @Bean
@@ -31,4 +25,5 @@ public class CommonBeanConfig {
     SystemInit systemInit() {
         return new SystemInit();
     }
+
 }

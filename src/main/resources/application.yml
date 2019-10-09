@@ -1,5 +1,7 @@
 server:
   port: 8123
+  error:
+    path: /error1
 cors:
   headers: AccessToken,AuthInfo
 logging:

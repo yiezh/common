@@ -8,5 +8,5 @@ package cn.enigma.project.common.error;
  */
 public interface ErrorFunction<O, T, R> {
 
-    R apply(O t, T r);
+    R apply(O o, T t);
 }
