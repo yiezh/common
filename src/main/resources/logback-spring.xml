@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <include resource="cn/enigma/project/common/log/defaults.xml"/>
-
     <include resource="cn/enigma/project/common/log/console-appender.xml"/>
     <include resource="cn/enigma/project/common/log/file-appender.xml"/>
     <include resource="cn/enigma/project/common/log/http-trace.xml"/>

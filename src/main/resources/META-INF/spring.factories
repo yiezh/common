@@ -1,3 +1,5 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  cn.enigma.project.common.config.CommonConfig,\
-  cn.enigma.project.common.config.cors.CorsConfiguration
+cn.enigma.project.common.config.CommonBeanConfig,\
+cn.enigma.project.common.config.cors.CorsConfiguration,\
+cn.enigma.project.common.config.CorsFilter,\
+cn.enigma.project.common.config.ExecutorConfig

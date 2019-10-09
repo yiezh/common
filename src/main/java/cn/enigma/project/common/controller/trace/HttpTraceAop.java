@@ -8,7 +8,6 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,7 +28,6 @@ import java.util.Map;
  * Description:
  */
 @Slf4j
-@Component
 @Aspect
 public class HttpTraceAop {
 

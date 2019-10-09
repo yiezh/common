@@ -129,6 +129,7 @@
                         <!-- 排除掉测试 package 里面的文件 -->
                         <exclude>cn/enigma/project/common/test/**/*</exclude>
                         <exclude>cn/enigma/project/common/test</exclude>
+                        <exclude>cn/enigma/project/common/CommonApplication.class</exclude>
                     </excludes>
                 </configuration>
             </plugin>
