@@ -1,10 +1,12 @@
-package cn.enigma.project.common;
+package cn.enigma.project.common.exception;
 
+import cn.enigma.project.common.Globals;
 import cn.enigma.project.common.controller.response.BaseVO;
 import cn.enigma.project.common.error.GlobalErrorEnum;
 import cn.enigma.project.common.exception.DataNotFoundException;
 import cn.enigma.project.common.exception.GlobalException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindException;
@@ -26,6 +28,7 @@ import java.util.stream.Collectors;
  * Description:
  */
 @Slf4j
+@Configuration
 @ControllerAdvice
 public class GlobalExceptionHandler {
 

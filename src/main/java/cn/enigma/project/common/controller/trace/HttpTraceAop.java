@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.slf4j.MDC;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,6 +18,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -54,6 +56,7 @@ public class HttpTraceAop {
         } catch (Throwable e) {
             log.error("{} LOGGER request args error: {}.", getRequestMethodName(joinPoint), e.getMessage(), e);
         }
+        MDC.put("start", String.valueOf(Instant.now().toEpochMilli()));
     }
 
     private String getRequestMethodName(JoinPoint jp) {
@@ -101,6 +104,8 @@ public class HttpTraceAop {
 
     @AfterReturning(returning = "result", pointcut = "httpTrace()")
     public void returning(JoinPoint joinPoint, Object result) {
+        long end = Instant.now().toEpochMilli();
+        long start = Long.parseLong(MDC.get("start"));
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         Method method = methodSignature.getMethod();
         // 如果方法所在的类是Controller注解并且方法没有ResponseBody注解的话为返回html页面，不打印返回内容
@@ -117,7 +122,10 @@ public class HttpTraceAop {
         // 没加注解或者设置为false时不打印返回内容
         HttpTrace isLogging = method.getAnnotation(HttpTrace.class);
         if (null != isLogging && isLogging.loggingResponse()) {
-            log.info("{} result: {}.", getRequestMethodName(joinPoint), null == result ? "null" : result.toString());
+            log.info("{} result: {}, use time {}.",
+                    getRequestMethodName(joinPoint),
+                    null == result ? "null" : result.toString(),
+                    end - start);
         }
     }
 
