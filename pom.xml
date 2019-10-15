@@ -10,7 +10,7 @@
     </parent>
     <groupId>cn.enigma.project</groupId>
     <artifactId>common</artifactId>
-    <version>0.0.24-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>common</name>
     <description>common</description>
 
