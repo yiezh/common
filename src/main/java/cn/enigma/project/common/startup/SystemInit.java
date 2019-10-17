@@ -1,14 +1,13 @@
 package cn.enigma.project.common.startup;
 
-import cn.enigma.project.common.define.SystemDefine;
-import cn.enigma.project.common.util.SnowflakeIdWorker;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.MDC;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.concurrent.Executor;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -23,6 +22,9 @@ public class SystemInit {
 
     protected static final Lock lock = new ReentrantLock();
 
+    @Autowired
+    private Executor executor;
+
     @PostConstruct
     public void dataInitialing() {
         log.debug("{} dataInitialing...", getClass().getName());
@@ -31,18 +33,14 @@ public class SystemInit {
         for (Method method : methods) {
             if (isInitDataMethod(method)) {
                 log.debug("do init: {}", clazz + "." + method.getName());
-                new Thread(() -> {
-                    String id = String.valueOf(SnowflakeIdWorker.getInstance(1L, 1L).nextId());
-                    MDC.put(SystemDefine.HTTP_REQUEST_TRACE_ID, id);
-                    MDC.put(SystemDefine.HTTP_REQUEST_SPAN_ID, id);
+                Runnable runnable = () -> {
                     try {
                         method.invoke(this);
                     } catch (IllegalAccessException | InvocationTargetException e) {
                         log.error("by luzh-> {}:{}.", clazz.getName(), e.getMessage(), e);
-                    } finally {
-                        MDC.clear();
                     }
-                }).start();
+                };
+                executor.execute(runnable);
             }
         }
     }

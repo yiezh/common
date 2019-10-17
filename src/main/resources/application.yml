@@ -6,6 +6,8 @@ cors:
   headers: AccessToken,AuthInfo
 logging:
   path: /Users/luzhihao/tmp/logs
+  level:
+    cn.enigma: debug
 spring:
   application:
     name: project-common

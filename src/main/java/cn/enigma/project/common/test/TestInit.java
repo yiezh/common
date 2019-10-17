@@ -17,12 +17,19 @@ import java.util.concurrent.ThreadLocalRandom;
 @Component("TestInit")
 public class TestInit extends SystemInit {
 
+    private final TestTask testTask;
+
+    public TestInit(TestTask testTask) {
+        this.testTask = testTask;
+    }
+
     public void initTest() {
         lock.lock();
         try {
             log.info("{}", LocalDateTime.now().toString());
             Thread.sleep(ThreadLocalRandom.current().nextInt(1000, 3000));
             log.info("{} sleep end", LocalDateTime.now().toString());
+            testTask.run();
         } catch (Exception ignored) {
         } finally {
             lock.unlock();
