@@ -1,5 +1,6 @@
 package cn.enigma.project.common.config;
 
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -15,8 +16,14 @@ import java.util.concurrent.ThreadPoolExecutor;
 @Configuration
 public class ExecutorConfig {
 
+	private final BeanFactory beanFactory;
+
+	public ExecutorConfig(BeanFactory beanFactory) {
+		this.beanFactory = beanFactory;
+	}
+
 	@Bean
-	public Executor myAsync() {
+	public Executor executor() {
 		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
 		int corePoolSize = 10;
 		executor.setCorePoolSize(corePoolSize);
