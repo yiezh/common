@@ -1,7 +1,6 @@
 package cn.enigma.project.common.test;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
@@ -10,7 +9,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * Modified By:
  * Description:
  */
-@EnableAsync
 @EnableScheduling
 @Configuration
 public class TestConfiguration {
