@@ -7,7 +7,8 @@
 
     <root level="INFO">
         <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="FILE"/>
+        <appender-ref ref="FILE_INFO"/>
+        <appender-ref ref="FILE_DEBUG"/>
         <appender-ref ref="FILE_ERROR"/>
     </root>
 </configuration>

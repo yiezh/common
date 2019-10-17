@@ -11,11 +11,11 @@
 
     <!-- 自定义控制台日志格式 -->
     <property name="CONSOLE_LOG_PATTERN"
-              value="%clr(%d{${yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(%5p) %clr(${PID:- }){magenta} [%32.32(%X{X-B3-TraceId},%X{X-B3-SpanId})] %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} [%clr(%5line){magenta}]: %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+              value="%clr(%d{${yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(%5p) %clr(${PID:- }){magenta} [%-32.32(%X{X-B3-TraceId},%X{X-B3-SpanId})] %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} [%clr(%5line){magenta}]: %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
 
     <!-- 输出到文件的日志格式 -->
     <property name="FILE_LOG_PATTERN"
-              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:- } [%32.32(%X{X-B3-TraceId},%X{X-B3-SpanId})] [%15.15t] %-40.40logger{39} [%5line]: %m%n%wEx"/>
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:- } [%-32.32(%X{X-B3-TraceId},%X{X-B3-SpanId})] [%15.15t] %-40.40logger{39} [%5line]: %m%n%wEx"/>
 
     <logger name="org.springframework" level="INFO"/>
     <logger name="org.hibernate" level="INFO"/>
