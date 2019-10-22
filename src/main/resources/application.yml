@@ -11,3 +11,8 @@ logging:
 spring:
   application:
     name: project-common
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
