@@ -41,6 +41,8 @@ public class ExecutorConfig extends AsyncConfigurerSupport {
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         // 设置线程池关闭的时候等待所有任务都完成再继续销毁其他的bean
         executor.setWaitForTasksToCompleteOnShutdown(true);
+        executor.setAwaitTerminationSeconds(60);
+        executor.setKeepAliveSeconds(60);
         executor.initialize();
         Runtime.getRuntime().addShutdownHook(new Thread(executor::shutdown));
         return new LazyTraceExecutor(beanFactory, executor);
