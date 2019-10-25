@@ -19,29 +19,26 @@ import java.util.concurrent.ThreadPoolExecutor;
  */
 @EnableAsync
 @Configuration
-public class ThreadConfig extends AsyncConfigurerSupport {
+public class ExecutorConfig extends AsyncConfigurerSupport {
 
     private final BeanFactory beanFactory;
 
-    public ThreadConfig(BeanFactory beanFactory) {
+    public ExecutorConfig(BeanFactory beanFactory) {
         this.beanFactory = beanFactory;
     }
 
     @Bean
     public Executor executor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        int corePoolSize = 10;
-        executor.setCorePoolSize(corePoolSize);
-        int maxPoolSize = 20;
-        executor.setMaxPoolSize(maxPoolSize);
-        int queueCapacity = 30000;
-        executor.setQueueCapacity(queueCapacity);
+        int core = Runtime.getRuntime().availableProcessors();
+        executor.setCorePoolSize(core);
+        executor.setMaxPoolSize(core * 2 + 1);
+        //如果传入值大于0，底层队列使用的是LinkedBlockingQueue,否则默认使用SynchronousQueue
+//        executor.setQueueCapacity(1000);
         executor.setThreadNamePrefix("pool-thread-");
         // rejection-policy：当pool已经达到max size的时候，如何处理新任务
         // CALLER_RUNS：不在新线程中执行任务，而是有调用者所在的线程来执行
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
-        int awaitTerminationSeconds = 60;
-        executor.setAwaitTerminationSeconds(awaitTerminationSeconds);
         // 设置线程池关闭的时候等待所有任务都完成再继续销毁其他的bean
         executor.setWaitForTasksToCompleteOnShutdown(true);
         executor.initialize();
