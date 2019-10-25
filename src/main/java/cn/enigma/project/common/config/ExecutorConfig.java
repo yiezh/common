@@ -34,7 +34,7 @@ public class ExecutorConfig extends AsyncConfigurerSupport {
         executor.setCorePoolSize(core);
         executor.setMaxPoolSize(core * 2 + 1);
         //如果传入值大于0，底层队列使用的是LinkedBlockingQueue,否则默认使用SynchronousQueue
-//        executor.setQueueCapacity(1000);
+        //executor.setQueueCapacity(1000);
         executor.setThreadNamePrefix("pool-thread-");
         // rejection-policy：当pool已经达到max size的时候，如何处理新任务
         // CALLER_RUNS：不在新线程中执行任务，而是有调用者所在的线程来执行
