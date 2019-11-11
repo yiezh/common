@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -29,9 +31,22 @@ public class ZipFileUtil {
      * @throws IOException e
      */
     public static List<File> unzipFile(String unzipFolder, InputStream zipFile) throws IOException {
+        return unzipFile(unzipFolder, zipFile, StandardCharsets.UTF_8);
+    }
+
+    /**
+     * 解压zip文件
+     *
+     * @param unzipFolder 解压目录
+     * @param zipFile     文件流
+     * @param charset     文件编码
+     * @return 解压后的所有文件
+     * @throws IOException e
+     */
+    public static List<File> unzipFile(String unzipFolder, InputStream zipFile, Charset charset) throws IOException {
         File directory = PathUtil.getFolderPath(unzipFolder).toFile();
         byte[] buffer = new byte[1024];
-        ZipInputStream zis = new ZipInputStream(zipFile);
+        ZipInputStream zis = new ZipInputStream(zipFile, charset);
         ZipEntry zipEntry = zis.getNextEntry();
         try {
             while (zipEntry != null) {
