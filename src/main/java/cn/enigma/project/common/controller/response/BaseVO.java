@@ -25,17 +25,17 @@ public class BaseVO<T> {
     }
 
     public BaseVO(GlobalErrorEnum errorCodeEnum) {
-        this.code = errorCodeEnum.getCode();
-        this.msg = errorCodeEnum.getMessage();
+        this.code = errorCodeEnum.errorCode();
+        this.msg = errorCodeEnum.errorMessage();
     }
 
     public BaseVO(GlobalErrorEnum errorCodeEnum, String message, ErrorFunction<String, GlobalErrorEnum, String> function) {
-        this.code = errorCodeEnum.getCode();
+        this.code = errorCodeEnum.errorCode();
         this.msg = function.apply(message, errorCodeEnum);
     }
 
     public BaseVO(GlobalErrorEnum errorCodeEnum, String message) {
-        this.code = errorCodeEnum.getCode();
+        this.code = errorCodeEnum.errorMessage();
         this.msg = message;
     }
 

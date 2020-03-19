@@ -7,7 +7,7 @@
                     defaultValue="springboot"/>
 
     <!-- 日志存放路径，由配置文件中的日志基础路径+应用名称+端口号而来 -->
-    <property name="LOG_FILE_PATH" value="${LOG_PATH:-/var/tmp}/${app-name}/${PID}"/>
+    <property name="LOG_FILE_PATH" value="${LOG_PATH:-./log}/${app-name}/${PID}"/>
 
     <!-- 自定义控制台日志格式 -->
     <property name="CONSOLE_LOG_PATTERN"

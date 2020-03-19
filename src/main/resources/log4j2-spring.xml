@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <Properties>
+        <Property name="APP_LOG_ROOT">${bundle:log:application.path}</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%style{%d{yyyy-MM-dd HH:mm:ss.SSS}}{black} %style{%pid}{magenta} %highlight{%5p} [%style{%15.15t}{bright,blue}]  [%16X{X-B3-TraceId}|%16X{X-B3-SpanId}] %style{%-30.30C{1.}}{cyan} %style{%5line}{magenta}: %msg%n%throwable"/>
+        </Console>
+
+        <RollingFile name="RollingFile"
+                     fileName="${APP_LOG_ROOT}/isdn/log4j2.log"
+                     filePattern="${APP_LOG_ROOT}/isdn/$${date:yyyy-MM}/log4j2-%d{dd}-%i.log.gz">
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %pid %5p [%15.15t] [%16X{X-B3-TraceId}|%16X{X-B3-SpanId}] [%-30.30C{1.} %5line]: %msg%n%throwable"/>
+            <Policies>
+                <!-- rollover on startup, daily and when the file reaches 10 MegaBytes -->
+                <OnStartupTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <loggers>
+        <logger name="org.springframework" level="INFO"/>
+        <logger name="org.mybatis" level="INFO"/>
+
+        <!-- LOG everything at INFO level -->
+        <root level="info">
+            <appenderRef ref="Console"/>
+            <appenderRef ref="RollingFile"/>
+        </root>
+    </loggers>
+</configuration>

@@ -8,9 +8,7 @@ logging:
   path: /Users/luzhihao/tmp/logs
   level:
     cn.enigma: debug
-spring:
-  application:
-    name: project-common
+  config: classpath:logback-spring.xml
 management:
   endpoints:
     web:

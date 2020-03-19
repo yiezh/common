@@ -3,8 +3,6 @@ package cn.enigma.project.common.exception;
 import cn.enigma.project.common.Globals;
 import cn.enigma.project.common.controller.response.BaseVO;
 import cn.enigma.project.common.error.GlobalErrorEnum;
-import cn.enigma.project.common.exception.DataNotFoundException;
-import cn.enigma.project.common.exception.GlobalException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -48,7 +46,7 @@ public class GlobalExceptionHandler {
     public BaseVO<?> globalHandler(HttpServletRequest request, Exception e) {
         Throwable throwable = Globals.getOriginException(e);
         BaseVO<?> result = new BaseVO<>();
-        result.setCode(GlobalErrorEnum.DEFAULT_ERROR.getCode());
+        result.setCode(GlobalErrorEnum.DEFAULT_ERROR.errorCode());
         result.setMsg(throwable.getMessage());
         log.error("{} error: {}.", getRequestInfo(request), result.getMsg(), e);
         return result;

@@ -11,14 +11,14 @@ import cn.enigma.project.common.error.GlobalErrorEnum;
 public class DataNotFoundException extends Exception {
     private static final long serialVersionUID = -2719568469419774112L;
 
-    private String code = GlobalErrorEnum.DATA_BOT_FOUNT_ERROR.getCode();
+    private String code = GlobalErrorEnum.DATA_BOT_FOUNT_ERROR.errorCode();
 
     public DataNotFoundException(String message) {
         super(message);
     }
 
     public DataNotFoundException() {
-        super(GlobalErrorEnum.DATA_BOT_FOUNT_ERROR.getMessage());
+        super(GlobalErrorEnum.DATA_BOT_FOUNT_ERROR.errorMessage());
     }
 
     public String getCode() {

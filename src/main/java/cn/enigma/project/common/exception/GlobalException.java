@@ -24,7 +24,7 @@ public class GlobalException extends Exception {
      */
     public GlobalException(String message) {
         super(message);
-        this.code = GlobalErrorEnum.DEFAULT_ERROR.getCode();
+        this.code = GlobalErrorEnum.DEFAULT_ERROR.errorCode();
     }
 
     /**
@@ -35,7 +35,7 @@ public class GlobalException extends Exception {
     @Deprecated
     public GlobalException(Throwable cause) {
         super(cause);
-        this.code = GlobalErrorEnum.DEFAULT_ERROR.getCode();
+        this.code = GlobalErrorEnum.DEFAULT_ERROR.errorMessage();
     }
 
     /**
@@ -46,7 +46,7 @@ public class GlobalException extends Exception {
      */
     public GlobalException(Throwable cause, Function<Throwable, String> messageMapper) {
         super(messageMapper.apply(cause), cause);
-        this.code = GlobalErrorEnum.DEFAULT_ERROR.getCode();
+        this.code = GlobalErrorEnum.DEFAULT_ERROR.errorCode();
     }
 
     /**
@@ -57,7 +57,7 @@ public class GlobalException extends Exception {
      */
     public GlobalException(String message, Throwable cause) {
         super(message, cause);
-        this.code = GlobalErrorEnum.DEFAULT_ERROR.getCode();
+        this.code = GlobalErrorEnum.DEFAULT_ERROR.errorCode();
     }
 
     /**
@@ -69,7 +69,7 @@ public class GlobalException extends Exception {
      */
     public GlobalException(String message, Throwable cause, ErrorFunction<Throwable, String, String> messageMapper) {
         super(messageMapper.apply(cause, message), cause);
-        this.code = GlobalErrorEnum.DEFAULT_ERROR.getCode();
+        this.code = GlobalErrorEnum.DEFAULT_ERROR.errorCode();
     }
 
     /**

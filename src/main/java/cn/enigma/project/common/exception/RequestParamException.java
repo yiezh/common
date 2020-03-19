@@ -22,14 +22,14 @@ public class RequestParamException extends GlobalException {
         super(!causes.isEmpty()
                         ? causes.stream().map(Globals::getOriginException).map(Throwable::getMessage)
                         .collect(Collectors.joining("；"))
-                        : GlobalErrorEnum.REQUEST_PARAM_ERROR.getMessage(),
-                GlobalErrorEnum.REQUEST_PARAM_ERROR.getCode()
+                        : GlobalErrorEnum.REQUEST_PARAM_ERROR.errorMessage(),
+                GlobalErrorEnum.REQUEST_PARAM_ERROR.errorCode()
         );
         this.causes.addAll(causes);
     }
 
     public RequestParamException(String message) {
-        super(message, GlobalErrorEnum.REQUEST_PARAM_ERROR.getCode());
+        super(message, GlobalErrorEnum.REQUEST_PARAM_ERROR.errorCode());
     }
 
     public List<Throwable> getCauses() {
