@@ -95,10 +95,7 @@ public class TaskRamCacheCompute<T> implements TaskCacheCompute<T> {
     private Lock getLock(String key) {
         Lock lock = new ReentrantLock();
         Lock keyLock = keyLockMap.putIfAbsent(key, lock);
-        if (keyLock == null) {
-            keyLock = lock;
-        }
-        return keyLock;
+        return null == keyLock ? lock : keyLock;
     }
 
     /**
